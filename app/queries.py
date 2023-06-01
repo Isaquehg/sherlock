@@ -1,10 +1,8 @@
 from flask import jsonify
 
-
 class Query:
     def __init__(self, database):
         self.db = database
-
 
     # -----------------------------------------CREATE--------------------------------------------------
     # (:Case {caseNumber: "C001",description: "Robbery at Main Street",status: "Open"})
@@ -13,7 +11,7 @@ class Query:
         parameters = {"caseNumber": caseNumber, "description": description, "status": status}
         self.db.execute_query(query, parameters)
 
-    # (:Suspect {aliases: ["Johnny", "The Shadow"],name: "John Doe",dateOfBirth: "1985-01-15",physicalDescription: "Tall, slim build"})
+    # (:Suspect {name: "John Doe", alias: "Big Joe", dateOfBirth: "1985-01-15", physicalDescription: "Tall"})
     def create_suspect(self, name: str, alias: str, dateOfBirth: str, physicalDescription: str):
         query = "CREATE (:Suspect {name: $name, alias: $alias, dateOfBirth: $dateOfBirth, physicalDescription: $physicalDescription})"
         parameters = {"name": name, "alias": alias, "dateOfBirth": dateOfBirth, "physicalDescription": physicalDescription}
@@ -84,6 +82,13 @@ class Query:
         parameters = {"caseNumber": caseNumber}
         data = self.db.execute_query(query, parameters)
         if data:
+            data_list = list(data[0])
+            data_dict = dict(data_list[0])
+            print(type(data[0]))
+
+            # This is what I want for every element!
+            print(data_dict)
+            
             response = {
                 'case': data['c'],
                 'suspects': data['suspects'],
@@ -91,6 +96,7 @@ class Query:
                 'investigators': data['investigators'],
                 'evidences': data['evidences']
             }
+            print("response: " + response)
             return jsonify(response)
         else:
             return jsonify({'error': 'Case not found'}), 404

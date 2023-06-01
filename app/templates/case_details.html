@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/case_details.css">
+    <title>Case Details</title>
+</head>
+<body>
+    <header>
+        <img src="../static/logo.png" alt="Logo">
+        <h1>Case Details: {{ case_number }}</h1>
+      </header>
+    
+      <main class="flex-container">
+        <div class="section victims">
+          <h2>Victims</h2>
+            { for victim in victims }
+                <a href="">{{ victim }}</a>
+          <!-- Add your content for vitamins section here -->
+            { endfor }
+        </div>
+    
+        <div class="section suspects">
+          <h2>Suspects</h2>
+          <!-- Add your content for suspects section here -->
+        </div>
+    
+        <div class="section investigators">
+          <h2>Investigators</h2>
+          <!-- Add your content for investigators section here -->
+        </div>
+    
+        <div class="section evidences">
+          <h2>Evidences</h2>
+          <!-- Add your content for evidences section here -->
+        </div>
+      </main>
+</body>
+</html>

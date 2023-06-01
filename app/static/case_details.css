@@ -1,0 +1,20 @@
+.section {
+    margin-bottom: 20px;
+  }
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Style for each section */
+.victims, .suspects, .investigators, .evidences {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+  
+  
+  
+  
+  

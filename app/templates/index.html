@@ -8,21 +8,22 @@
     <title>Sherlock</title>
 </head>
 <body>
-    <header>
-      <img src="../static/logo1.png" alt="Logo" height="114" width="405">
+    <header><!---114 x 405---->
+      <img id="logo" src="../static/logo1.png" alt="Logo" height="57" width="202">
+      <h1>Crime Scene Investigation</h1>
     </header>
   
     <main>
+      <h2>Choose the Case</h2>
       <div class="button-container">
-        <a href="#" class="button create">Create</a>
-        <a href="#" class="button view">View</a>
-        <a href="#" class="button update">Update</a>
-        <a href="#" class="button delete">Delete</a>
+        {% for case_number in case_numbers %}
+          <a href="/home/{{ case_number }}" class="button case-button">{{ case_number }}</a>
+        {% endfor %}
       </div>
     </main>
 
   </body>
   <footer>
-    
+    <p id="copyright">&copy; Isaque Hollanda Gonçalves</p>
   </footer>
 </html>
