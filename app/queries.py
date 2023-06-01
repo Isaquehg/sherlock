@@ -82,25 +82,75 @@ class Query:
         parameters = {"caseNumber": caseNumber}
         data = self.db.execute_query(query, parameters)
         if data:
-            data_list = list(data[0])
-            data_dict = dict(data_list[0])
-            print(type(data[0]))
+            # Assuming the received data is stored in a variable called `data`
+            case = data[0][0]
+            suspects = data[1]
+            victims = data[2]
+            investigators = data[3]
+            evidences = data[4]
 
-            # This is what I want for every element!
-            print(data_dict)
+            # Extracting the properties of the case node
+            case_properties = case.properties
+            case_number = case_properties['caseNumber']
+
+            # Extracting the properties of the suspects
+            suspects_data = []
+            for suspect in suspects:
+                suspect_properties = suspect.properties
+                suspect_data = {
+                    'name': suspect_properties['name'],
+                    'aliases': suspect_properties['aliases'],
+                    'date_of_birth': suspect_properties['dateOfBirth'],
+                    'physical_description': suspect_properties['physicalDescription']
+                }
+                suspects_data.append(suspect_data)
+
+            # Extracting the properties of the victims
+            victims_data = []
+            for victim in victims:
+                victim_properties = victim.properties
+                victim_data = {
+                    'name': victim_properties['name'],
+                    'age': victim_properties['age'],
+                    'contact_information': victim_properties['contactInformation']
+                }
+                victims_data.append(victim_data)
+
+            # Extracting the properties of the investigators
+            investigators_data = []
+            for investigator in investigators:
+                investigator_properties = investigator.properties
+                investigator_data = {
+                    'name': investigator_properties['name'],
+                    'badge_number': investigator_properties['badgeNumber'],
+                    'contact_information': investigator_properties['contactInformation'],
+                    'expertise': investigator_properties['expertise']
+                }
+                investigators_data.append(investigator_data)
+
+            # Extracting the properties of the evidences
+            evidences_data = []
+            for evidence in evidences:
+                evidence_properties = evidence.properties
+                evidence_data = {
+                    'description': evidence_properties['description'],
+                    'type': evidence_properties['type'],
+                    'timestamp': evidence_properties['timestamp']
+                }
+                evidences_data.append(evidence_data)
+
             
             response = {
-                'case': data['c'],
-                'suspects': data['suspects'],
-                'victims': data['victims'],
-                'investigators': data['investigators'],
-                'evidences': data['evidences']
+                'case': case_number,
+                'suspects': suspects_data,
+                'victims': victims_data,
+                'investigators': investigators_data,
+                'evidences': evidences_data
             }
             print("response: " + response)
             return jsonify(response)
         else:
             return jsonify({'error': 'Case not found'}), 404
-
 
     # -----------------------------------------UPDATE--------------------------------------------------
     # Modify Case status
