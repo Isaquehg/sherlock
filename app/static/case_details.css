@@ -65,8 +65,9 @@ header div h1{
 }
 
 #status{
-    text-align: center;
+    margin-left: 36.5rem;
     font-style: italic;
+    font-size: 2rem;
     color: #000000;
 }
 
