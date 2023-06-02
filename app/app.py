@@ -14,10 +14,17 @@ def home():
 
 @app.route('/home/<case_number>')
 def case_details(case_number):
-    response = sherlock.get_case(case_number)
-    suspects = response["suspects"]
-    victims = response["victims"]
-    investigators = response["investigators"]
-    evidences = response["evidences"]
+    data = sherlock.get_case(case_number)
+    # Extracting Case
+    case = data[0]
+    print(case)
+    # Extracting Suspects
+    suspects = data[1]
+    # Extracting Victims
+    victims = data[2]
+    # Extracting Investigators
+    investigators = data[3]
+    # Extracting Evidences
+    evidences = data[4]
 
-    return render_template('case_details.html', case_number=case_number, suspects=suspects, victims=victims, investigators=investigators, evidences=evidences)
+    return render_template('case_details.html', case=case, suspects=suspects, victims=victims, investigators=investigators, evidences=evidences)

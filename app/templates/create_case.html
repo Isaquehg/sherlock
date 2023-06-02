@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/index.css">
+    <link rel="stylesheet" type="text/css" href="../static/create_case.css">
     <title>Sherlock</title>
 </head>
 <body>
@@ -16,24 +16,6 @@
         <a class="header-button" href="">Investigators</a>
         <a class="header-button" href="">Evidences</a>
       </div>
-      <div>
-        <a id="new_case" class="header-button" href="">New Case</a>
-        <h1 id="header-title">Crime Scene Investigation</h1>
-      </div>
+      <h1 id="header-title">Crime Scene Investigation</h1>
       <hr class="divisor">
     </header>
-  
-    <main>
-      <h2>Choose the Case</h2>
-      <div class="button-container">
-        {% for case_number in case_numbers %}
-          <a href="/home/{{ case_number }}" class="button case-button">{{ case_number }}</a>
-        {% endfor %}
-      </div>
-    </main>
-
-  </body>
-  <footer>
-    <p id="copyright">&copy; Isaque Hollanda Gonçalves</p>
-  </footer>
-</html>

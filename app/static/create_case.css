@@ -47,64 +47,12 @@ header div{
     background-color: #880000;
     margin-left: 1em;
 }
-#new_case{
-    background-color: #880000;
-}
-#new_case:hover{
-    background-color: #880000;
-}
 
-header div h1{
+header h1{
     text-align: center;
-    margin-left: 8em;
 }
 .divisor{
     border: none;
     border-top: 2px solid #000000;
     margin: 20px 0;
-}
-
-main {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.button {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 1rem 1rem;
-    background-color: black;
-    color: white;
-    text-decoration: none;
-    font-size: 2em;
-    text-align: center;
-    line-height: 10em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, margin-left 0.3s ease;
-    width: 6em;
-    height: 10em;
-}
-
-.button:hover {
-    background-color: #880000;
-    margin-left: 0.7em;
-}
-
-@media only screen and (max-width: 600px) {
-    .button {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-}
-  
-#copyright{
-    margin: 3em;
-    padding: 1em;
-    text-align: center;
 }

@@ -1,16 +1,125 @@
-.section {
-    margin-bottom: 20px;
-  }
+body {
+    background: linear-gradient(to right, #ffffff, #000000);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    padding: 1rem;
+    text-align: left;
+}
+
+header img {
+    max-width: 500px;
+    margin-right: 4em;
+}
+
+header h1{
+    color: #880000;
+    font-weight: 900;
+    font-style: oblique;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+}
+
+header div{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.header-button{
+    display: inline-block;
+    margin: 0.5rem 1.5rem 0.3rem 1rem;
+    padding: 0.1rem;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 1.8em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, margin-left 0.3s ease;
+    width: 7em;
+    height: 2em;
+}
+.header-button:hover{
+    background-color: #880000;
+    margin-left: 1em;
+}
+#new_case{
+    background-color: #880000;
+}
+#new_case:hover{
+    background-color: #880000;
+}
+
+header div h1{
+    text-align: center;
+    margin-left: 8em;
+}
+.divisor{
+    border: none;
+    border-top: 2px solid #000000;
+    margin: 20px 0;
+}
+
+#status{
+    text-align: center;
+    font-style: italic;
+    color: #000000;
+}
+
+
 .flex-container {
-    display: flex;
+    display:block;
     flex-wrap: wrap;
 }
 
-/* Style for each section */
-.victims, .suspects, .investigators, .evidences {
-    padding: 10px;
-    background-color: #f5f5f5;
+.category{
+    text-align: center;
+    font-size: 2.4em;
+    color: #880000;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 1rem 1rem;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    font-size: 2em;
+    text-align: center;
+    line-height: 10em;
     border-radius: 5px;
+    transition: background-color 0.3s ease, margin-left 0.3s ease;
+    width: 6em;
+    height: 10em;
+}
+
+.button:hover {
+    background-color: #880000;
+    margin-left: 0.7em;
+}
+
+@media only screen and (max-width: 600px) {
+    .button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+  
+#copyright{
+    margin: 3em;
+    padding: 1em;
+    text-align: center;
 }
 
   

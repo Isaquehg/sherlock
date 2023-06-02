@@ -5,37 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/case_details.css">
-    <title>Case Details</title>
+    <title>Sherlock</title>
 </head>
 <body>
-    <header>
-        <img src="../static/logo.png" alt="Logo">
-        <h1>Case Details: {{ case_number }}</h1>
-      </header>
-    
-      <main class="flex-container">
-        <div class="section victims">
-          <h2>Victims</h2>
-            { for victim in victims }
-                <a href="">{{ victim }}</a>
-          <!-- Add your content for vitamins section here -->
-            { endfor }
+    <header><!---114 x 405---->
+      <div id="header-options">
+        <img id="logo" src="../static/logo1.png" alt="Logo" height="57" width="202">
+        <a class="header-button" href="">Suspects</a>
+        <a class="header-button" href="">Victims</a>
+        <a class="header-button" href="">Investigators</a>
+        <a class="header-button" href="">Evidences</a>
+      </div>
+      <div>
+        <a id="new_case" class="header-button" href="">New Case</a>
+        <h1 id="header-title">Crime Scene Investigation</h1>
+      </div>
+      <hr class="divisor">
+    </header>
+  
+    <main class="flex-container">
+      <h1 id="status">Status: {{ case.status }}</h1>
+      <div class="section suspects">
+        <h2 class="category">Suspects</h2>
+        <div class="button-container">
+          {% for suspect in suspects %}
+            <a class="button" href="">{{ suspect.alias }}</a>
+          {% endfor %}
         </div>
-    
-        <div class="section suspects">
-          <h2>Suspects</h2>
-          <!-- Add your content for suspects section here -->
+      </div>
+
+      <br>
+
+      <div class="section victims">
+        <h2 class="category">Victims</h2>
+        <div class="button-container">
+          {% for victim in victims %}
+              <a class="button" href="">{{ victim.name }}</a>
+          {% endfor %}
         </div>
-    
-        <div class="section investigators">
-          <h2>Investigators</h2>
-          <!-- Add your content for investigators section here -->
+      </div>
+
+      <br>
+  
+      <div class="section investigators">
+        <h2 class="category">Investigators</h2>
+        <!-- Add your content for investigators section here -->
+        <div class="button-container">
+          {% for investigator in investigators %}
+              <a class="button" href="">{{ investigator.badgeNumber }}</a>
+          {% endfor %}
         </div>
-    
-        <div class="section evidences">
-          <h2>Evidences</h2>
-          <!-- Add your content for evidences section here -->
+      </div>
+
+      <br>
+  
+      <div class="section evidences">
+        <h2 class="category">Evidences</h2>
+        <!-- Add your content for evidences section here -->
+        <div class="button-container">
+          {% for evidence in evidences %}
+            <a class="button" href="">{{ evidence.evidenceNumber }}</a>
+          {% endfor %}
         </div>
-      </main>
+      </div>
+    </main>
 </body>
 </html>

@@ -82,77 +82,67 @@ class Query:
         parameters = {"caseNumber": caseNumber}
         data = self.db.execute_query(query, parameters)
         if data:
-            # Cleanning data
+            # Cleanning data (All the data is at the first position)
             data = data[0]
 
-            # dict of node case
+            # Dict of node case
             case = dict(data[0])
 
-            suspects = dict(data[1])
-            print(suspects)
-            victims = data[2]
-            investigators = data[3]
-            evidences = data[4]
-
-            # Extracting the properties of the case node
-            case_properties = case.properties
-            case_number = case_properties['caseNumber']
-
-            # Extracting the properties of the suspects
-            suspects_data = []
+            # List of lists containing everything
+            suspects = data[1]
+            suspects_list = []
             for suspect in suspects:
-                suspect_properties = suspect.properties
-                suspect_data = {
-                    'name': suspect_properties['name'],
-                    'aliases': suspect_properties['aliases'],
-                    'date_of_birth': suspect_properties['dateOfBirth'],
-                    'physical_description': suspect_properties['physicalDescription']
-                }
-                suspects_data.append(suspect_data)
+                suspect_dict = {}
+                # Extracting properties from the node and inserting in a dict
+                suspect_dict["name"] = suspect['name']
+                suspect_dict["alias"] = suspect['aliases']
+                suspect_dict["dateOfBirth"] = suspect['dateOfBirth']
+                suspect_dict["physicalDescription"] = suspect['physicalDescription']
 
-            # Extracting the properties of the victims
-            victims_data = []
+                suspects_list.append(suspect_dict)
+
+            victims = data[2]
+            victims_list = []
             for victim in victims:
-                victim_properties = victim.properties
-                victim_data = {
-                    'name': victim_properties['name'],
-                    'age': victim_properties['age'],
-                    'contact_information': victim_properties['contactInformation']
-                }
-                victims_data.append(victim_data)
+                victim_dict = {}
+                victim_dict["id"] = victim["id"]
+                victim_dict["name"] = victim["name"]
+                victim_dict["age"] = victim["age"]
+                victim_dict["contactInformation"] = victim["contactInformation"]
+                
+                victims_list.append(victim_dict)
 
-            # Extracting the properties of the investigators
-            investigators_data = []
+            investigators = data[3]
+            investigators_list = []
             for investigator in investigators:
-                investigator_properties = investigator.properties
-                investigator_data = {
-                    'name': investigator_properties['name'],
-                    'badge_number': investigator_properties['badgeNumber'],
-                    'contact_information': investigator_properties['contactInformation'],
-                    'expertise': investigator_properties['expertise']
-                }
-                investigators_data.append(investigator_data)
+                investigator_dict = {}
+                investigator_dict["badgeNumber"] = investigator["badgeNumber"]
+                investigator_dict["name"] = investigator["name"]
+                investigator_dict["contactInformation"] = investigator["contactInformation"]
+                investigator_dict["expertise"] = investigator["expertise"]
 
-            # Extracting the properties of the evidences
-            evidences_data = []
+                investigators_list.append(investigator_dict)
+
+            evidences = data[4]
+            evidences_list = []
             for evidence in evidences:
-                evidence_properties = evidence.properties
-                evidence_data = {
-                    'description': evidence_properties['description'],
-                    'type': evidence_properties['type'],
-                    'timestamp': evidence_properties['timestamp']
-                }
-                evidences_data.append(evidence_data)
+                evidences_dict = {}
+                evidences_dict["evidenceNumber"] = evidence["evidenceNumber"]
+                evidences_dict["description"] = evidence["description"]
+                evidences_dict["type"] = evidence["type"]
+                evidences_dict["timestamp"] = evidence["timestamp"]
 
-            response = {
-                'case': case_number,
-                'suspects': suspects_data,
-                'victims': victims_data,
-                'investigators': investigators_data,
-                'evidences': evidences_data
-            }
-            print("response: " + response)
-            return jsonify(response)
+                evidences_list.append(evidences_dict)
+            
+            # Packing everything to send
+            response = []
+            response.append(case)
+            response.append(suspects_list)
+            response.append(victims_list)
+            response.append(investigators_list)
+            response.append(evidences_list)
+
+            return response
         else:
             return jsonify({'error': 'Case not found'}), 404
 
