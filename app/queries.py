@@ -82,9 +82,14 @@ class Query:
         parameters = {"caseNumber": caseNumber}
         data = self.db.execute_query(query, parameters)
         if data:
-            # Assuming the received data is stored in a variable called `data`
-            case = data[0][0]
-            suspects = data[1]
+            # Cleanning data
+            data = data[0]
+
+            # dict of node case
+            case = dict(data[0])
+
+            suspects = dict(data[1])
+            print(suspects)
             victims = data[2]
             investigators = data[3]
             evidences = data[4]
@@ -139,7 +144,6 @@ class Query:
                 }
                 evidences_data.append(evidence_data)
 
-            
             response = {
                 'case': case_number,
                 'suspects': suspects_data,
