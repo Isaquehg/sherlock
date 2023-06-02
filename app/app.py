@@ -45,7 +45,7 @@ def create_case():
         return render_template('create_case.html')
     
 @app.route('/create/suspect')
-def create_case():
+def create_suspect():
     if request.method == 'POST':
         suspect_name = request.form.get('name')
         suspect_alias = request.form.get('alias')
@@ -63,7 +63,7 @@ def create_case():
         return render_template('create_suspect.html')
     
 @app.route('/create/victim')
-def create_case():
+def create_victim():
     if request.method == 'POST':
         victim_name = request.form.get('victim_name')
         victim_age = request.form.get('age')
@@ -80,7 +80,7 @@ def create_case():
         return render_template('create_victim.html')
     
 @app.route('/create/investigator')
-def create_case():
+def create_investigator():
     if request.method == 'POST':
         investigator_badge_number = request.form.get('investigator_badge')
         investigator_name = request.form.get('name')
@@ -98,7 +98,7 @@ def create_case():
         return render_template('create_investigator.html')
     
 @app.route('/create/evidence')
-def create_case():
+def create_evidence():
     if request.method == 'POST':
         evidence_number = request.form.get('evidence_number')
         evidence_description = request.form.get('description')
@@ -114,3 +114,8 @@ def create_case():
         return redirect('/home/{}'.format(evidence_case_number))
     else:
         return render_template('create_evidence.html')
+
+@app.route('/view/suspect')
+def view_suspect(suspect_alias):
+    # CREATE GET QUERIES
+    #sherlock.get
