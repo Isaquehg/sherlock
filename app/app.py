@@ -17,7 +17,6 @@ def case_details(case_number):
     data = sherlock.get_case(case_number)
     # Extracting Case
     case = data[0]
-    print(case)
     # Extracting Suspects
     suspects = data[1]
     # Extracting Victims
@@ -119,3 +118,28 @@ def create_evidence():
 def view_suspect(suspect_alias):
     # CREATE GET QUERIES
     #sherlock.get
+    pass
+
+@app.route('/delete/suspect/<suspect_alias>')
+def delete_suspect(suspect_alias):
+    # CREATE GET QUERIES
+    #sherlock.get
+    pass
+
+@app.route('/delete/victim/<victim_name>')
+def delete_victim(victim_name):
+    # CREATE GET QUERIES
+    #sherlock.get
+    pass
+
+@app.route('/delete/investigator/<badge_number>')
+def delete_investigator(badge_number):
+    # CREATE GET QUERIES
+    #sherlock.get
+    pass
+
+@app.route('/delete/evidence/<evidence_number>')
+def delete_evidence(evidence_number):
+    # CREATE GET QUERIES
+    #sherlock.get
+    pass
