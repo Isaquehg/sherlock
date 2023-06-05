@@ -27,11 +27,12 @@
       <ul>
           <li>
               <h3>{{ victim.name }}</h3>
-              <p>Victim ID: {{ victim.victimId }}</p>
+              <p>Victim ID: {{ victim.victim_id }}</p>
               <p>Age: {{ victim.age }}</p>
               <p>Contact Information: {{ victim.contactInformation }}</p>
           </li>
     </ul>
+    <a href="/delete/victim/{{ victim.victim_id }}">Delete Victim</a>
     </main>
 </body>
 </html>

@@ -27,11 +27,12 @@
       <ul>
           <li>
               <h3>{{ evidence.evidenceNumber }}</h3>
-              <p>Type: {{ evidence.description }}</p>
+              <p>Description: {{ evidence.description }}</p>
               <p>Type: {{ evidence.type }}</p>
               <p>Timestamp: {{ evidence.timestamp }}</p>
           </li>
       </ul>
+      <a href="/delete/evidence/{{ evidence.evidenceNumber }}">Delete Evidence</a>
     </main>
 </body>
 </html>
