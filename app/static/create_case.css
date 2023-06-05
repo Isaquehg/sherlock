@@ -57,16 +57,19 @@ header h1{
     margin: 20px 0;
 }
 
+
 /* Form styling */
 form {
     display: flex;
     flex-direction: column;
     max-width: 300px;
     margin-bottom: 20px;
+    margin-left: 31rem;
   }
 
 input{
     border-radius: 5px;
+    height: 2rem;
 }
   
   label {
@@ -89,12 +92,12 @@ input{
   }
   
   button[type="submit"]:hover {
-    background-color: red;
+    background-color: #880000;
   }
   
   /* Error styling */
   .error {
-    color: red;
+    color: #880000;
     margin-top: 5px;
   }
   
