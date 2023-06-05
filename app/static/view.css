@@ -63,3 +63,40 @@ header div h1{
     border-top: 2px solid #000000;
     margin: 20px 0;
 }
+
+main {
+    background-color: #fff;
+    padding: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  a.delete-button {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  a.delete-button:hover {
+    background-color: #dd0000;
+  }
+  

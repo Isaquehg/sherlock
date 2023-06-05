@@ -18,9 +18,9 @@ class Query:
         self.db.execute_query(query, parameters)
 
     # (:Victim {contactInformation: "robert@example.com",name: "Robert Johnson",age: 42})
-    def create_victim(self, id: str, name: str, age: int, contactInformation: str):
-        query = "CREATE (:Victim {name: $name, age: $age, contactInformation: $contactInformation})"
-        parameters = {"name": name, "age": age, "contactInformation": contactInformation}
+    def create_victim(self, victim_id: str, name: str, age: int, contactInformation: str):
+        query = "CREATE (:Victim {victim_id: $victim_id, name: $name, age: $age, contactInformation: $contactInformation})"
+        parameters = {"victim_id": victim_id, "name": name, "age": age, "contactInformation": contactInformation}
         self.db.execute_query(query, parameters)
 
     # (:Investigator {contactInformation: "smith@example.com",name: "Detective Smith",badgeNumber: "D001",expertise: "Forensics"})
@@ -95,7 +95,7 @@ class Query:
                 suspect_dict = {}
                 # Extracting properties from the node and inserting in a dict
                 suspect_dict["name"] = suspect['name']
-                suspect_dict["alias"] = suspect['aliases']
+                suspect_dict["alias"] = suspect['alias']
                 suspect_dict["dateOfBirth"] = suspect['dateOfBirth']
                 suspect_dict["physicalDescription"] = suspect['physicalDescription']
 
@@ -145,6 +145,27 @@ class Query:
             return response
         else:
             return jsonify({'error': 'Case not found'}), 404
+        
+
+    def get_suspect(self, suspect_alias):
+        query = "MATCH (s:Suspect {alias: $suspect_alias}) return s"
+        parameters = {"suspect_alias": suspect_alias}
+        return self.db.execute_query(query, parameters)
+    
+    def get_victim(self, victim_id):
+        query = "MATCH (v:Victim {victim_id: $victim_id}) return v"
+        parameters = {"victim_id": victim_id}
+        return self.db.execute_query(query, parameters)
+    
+    def get_suspect(self, suspect_alias):
+        query = "MATCH (s:Suspect {alias: $suspect_alias}) return s"
+        parameters = {"suspect_alias": suspect_alias}
+        return self.db.execute_query(query, parameters)
+    
+    def get_suspect(self, suspect_alias):
+        query = "MATCH (s:Suspect {alias: $suspect_alias}) return s"
+        parameters = {"suspect_alias": suspect_alias}
+        return self.db.execute_query(query, parameters)
 
     # -----------------------------------------UPDATE--------------------------------------------------
     # Modify Case status
@@ -173,4 +194,9 @@ class Query:
     def delete_suspect(self, name):
         query = "MATCH (s:Suspect {name: $name}) DETACH DELETE s"
         parameters = {"name": name}
+        self.db.execute_query(query, parameters)
+
+    def delete_victim(self, id):
+        query = "MATCH (v:Victim {victim_id: $victim_id}) DETACH DELETE v"
+        parameters = {"victim_id": id}
         self.db.execute_query(query, parameters)

@@ -25,7 +25,10 @@
 
     <main>
         <!-- Form to assign a Victim to a Case -->
-        <form action="/create/victim" method="post">
+        <form action="/create/victim/" method="post">
+            <label for="victim_id">Victim ID:</label>
+            <input type="text" id="victim_id" name="victim_id" required>
+
             <label for="victim_name">Victim Name:</label>
             <input type="text" id="victim_name" name="victim_name" required>
     

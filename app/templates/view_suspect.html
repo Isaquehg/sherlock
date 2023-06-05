@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/create_victim.css">
-    <title>Assign Investigator</title>
+    <link rel="stylesheet" type="text/css" href="../static/view.css">
+    <title>View Suspect</title>
 </head>
 <body>
     <header><!---114 x 405---->
@@ -21,7 +21,7 @@
           <h1 id="header-title">Crime Scene Investigation</h1>
         </div>
         <hr class="divisor">
-      </header>
+    </header>
 
     <main>
       <ul>
@@ -32,7 +32,7 @@
               <p>Physical Description: {{ suspect.physicalDescription }}</p>
           </li>
         </ul>
-        <a href="/delete/suspect/{{ suspect_alias }}">Delete Suspect</a>
+        <a href="/delete/suspect/{{ suspect.alias }}">Delete Suspect</a>
     </main>
 </body>
 </html>

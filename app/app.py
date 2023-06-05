@@ -4,7 +4,7 @@ from database import Database
 from queries import Query
 
 app = Flask(__name__)
-db = Database("bolt://44.197.243.30:7687", "neo4j", "funding-tablet-motion")
+db = Database("bolt://44.203.85.235:7687", "neo4j", "sky-privilege-confusions")
 sherlock = Query(db)
 
 @app.route("/home")
@@ -64,14 +64,15 @@ def create_suspect():
 @app.route('/create/victim')
 def create_victim():
     if request.method == 'POST':
+        victim_id = request.form.get('victim_id')
         victim_name = request.form.get('victim_name')
         victim_age = request.form.get('age')
         victim_contact_information = request.form.get('contact_information')
         victim_case_number = request.form.get('case_number')
 
         # Save the form data to the database and assign to the case
-        sherlock.create_suspect(victim_name, victim_age, victim_contact_information)
-        sherlock.affected(victim_case_number, victim_name)
+        sherlock.create_victim(victim_id, victim_name, victim_age, victim_contact_information)
+        sherlock.affected(victim_case_number, victim_id)
 
         # Redirect to a success page or the case details page
         return redirect('/home/{}'.format(victim_case_number))
@@ -114,32 +115,51 @@ def create_evidence():
     else:
         return render_template('create_evidence.html')
 
-@app.route('/view/suspect')
+@app.route('/view/suspect/<suspect_alias>')
 def view_suspect(suspect_alias):
-    # CREATE GET QUERIES
-    #sherlock.get
-    pass
+    suspect = sherlock.get_suspect(suspect_alias)
+
+    return render_template('view_suspect.html', suspect=suspect)
+
+@app.route('/view/victim/<victim_id>')
+def view_victim(victim_id):
+    suspect = sherlock.get
+
+    return render_template('view_suspect.html', suspect=suspect)
+
+@app.route('/view/suspect/<suspect_alias>')
+def view_suspect(suspect_alias):
+    suspect = sherlock.get_suspect(suspect_alias)
+
+    return render_template('view_suspect.html', suspect=suspect)
+
+@app.route('/view/suspect/<suspect_alias>')
+def view_suspect(suspect_alias):
+    suspect = sherlock.get_suspect(suspect_alias)
+
+    return render_template('view_suspect.html', suspect=suspect)
 
 @app.route('/delete/suspect/<suspect_alias>')
 def delete_suspect(suspect_alias):
-    # CREATE GET QUERIES
-    #sherlock.get
-    pass
+    sherlock.delete_suspect(suspect_alias)
 
-@app.route('/delete/victim/<victim_name>')
-def delete_victim(victim_name):
-    # CREATE GET QUERIES
-    #sherlock.get
-    pass
+    # Redirect to a success page or the case details page
+    return redirect('/home')
+
+@app.route('/delete/victim/<victim_id>')
+def delete_victim(victim_id):
+    sherlock.delete_victim(victim_id)
+
+    return redirect('/home')
 
 @app.route('/delete/investigator/<badge_number>')
 def delete_investigator(badge_number):
-    # CREATE GET QUERIES
-    #sherlock.get
-    pass
+    sherlock.delete_investigator(badge_number)
+
+    return redirect('/home')
 
 @app.route('/delete/evidence/<evidence_number>')
 def delete_evidence(evidence_number):
-    # CREATE GET QUERIES
-    #sherlock.get
-    pass
+    sherlock.delete_evidence(evidence_number)
+
+    return redirect('/home')

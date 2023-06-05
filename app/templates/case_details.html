@@ -31,7 +31,7 @@
         <h2 class="category">Suspects</h2>
         <div class="button-container">
           {% for suspect in suspects %}
-            <a class="button" href="">{{ suspect.alias }}</a>
+            <a class="button" href="/view/suspect/{{ suspect.alias }}">{{ suspect.alias }}</a>
           {% endfor %}
         </div>
       </div>
@@ -42,7 +42,7 @@
         <h2 class="category">Victims</h2>
         <div class="button-container">
           {% for victim in victims %}
-              <a class="button" href="">{{ victim.name }}</a>
+              <a class="button" href="">{{ victim.name.split(' ')[0] }}</a>
           {% endfor %}
         </div>
       </div>
