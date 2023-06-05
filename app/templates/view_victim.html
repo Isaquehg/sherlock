@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/view.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view.css') }}">
     <title>View Victim</title>
 </head>
 <body>
   <header><!---114 x 405---->
     <div id="header-options">
       <a href="/home">
-        <img id="logo" src="../static/logo1.png" alt="Logo" height="57" width="202">
+        <img id="logo" src="{{ url_for('static', filename='logo1.png') }}" alt="Logo" height="57" width="202">
       </a>
       <a class="header-button" href="/create/suspect">Suspects</a>
       <a class="header-button" href="/create/victim">Victims</a>

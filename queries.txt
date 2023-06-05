@@ -3,6 +3,7 @@ CREATE (:Case {caseNumber: 'C001', description: 'Robbery at Main Street', status
 WITH 1 AS dummy
 CREATE (:Case {caseNumber: 'C002', description: 'Burglary at Elm Avenue', status: 'Closed'})
 WITH 1 AS dummy
+
 // Create suspects and relate them to cases
 MATCH (c:Case {caseNumber: 'C001'})
 CREATE (:Suspect {name: 'John Doe', alias: 'Big Joe', dateOfBirth: '1985-01-15'})-[:INVOLVED_IN]->(c)
@@ -10,13 +11,15 @@ WITH 1 AS dummy
 MATCH (c:Case {caseNumber: 'C001'})
 CREATE (:Suspect {name: 'Jane Smith', alias: 'Smith', dateOfBirth: '1990-03-22'})-[:INVOLVED_IN]->(c)
 WITH 1 AS dummy
+
 // Create victims and relate them to cases
 MATCH (c:Case {caseNumber: 'C001'})
-CREATE (:Victim {victim_id: 0, name: 'Robert Johnson', age: 42, contactInformation: 'robert@gmail.com'})-[:AFFECTED]->(c)
+CREATE (:Victim {victim_id: "0", name: 'Robert Johnson', age: 42, contactInformation: 'robert@gmail.com'})-[:AFFECTED]->(c)
 WITH 1 AS dummy
 MATCH (c:Case {caseNumber: 'C001'})
-CREATE (:Victim {victim_id: 1, name: 'Sarah Thompson', age: 28, contactInformation: 'thompson@gmail.com'})-[:AFFECTED]->(c)
+CREATE (:Victim {victim_id: "1", name: 'Sarah Thompson', age: 28, contactInformation: 'thompson@gmail.com'})-[:AFFECTED]->(c)
 WITH 1 AS dummy
+
 // Create investigators and relate them to cases
 MATCH (c:Case {caseNumber: 'C001'})
 CREATE (:Investigator {name: 'Detective Smith', badgeNumber: 'D001',  contactInformation: 'detSmith@gmail.com', expertise: 'Forensics'})-[:ASSIGNED_TO]->(c)
@@ -24,6 +27,7 @@ WITH 1 AS dummy
 MATCH (c:Case {caseNumber: 'C001'})
 CREATE (:Investigator {name: 'Detective Johnson', badgeNumber: 'D002',  contactInformation: 'detJohnson@gmail.com', expertise: 'Interrogation'})-[:ASSIGNED_TO]->(c)
 WITH 1 AS dummy
+
 // Create Evidences and relate them to cases
 MATCH (c:Case {caseNumber: 'C001'})
 CREATE (:Evidence {evidenceNumber: "1", description: 'Surveillance footage', type: 'Video', timestamp: '2023-05-15 10:30:00'})-[:RELATED_TO]->(c)

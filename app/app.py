@@ -22,6 +22,7 @@ def case_details(case_number):
     # Extracting Suspects
     suspects = data[1]
     # Extracting Victims
+    print(data[0])
     victims = data[2]
     # Extracting Investigators
     investigators = data[3]
@@ -47,7 +48,7 @@ def create_case():
     else:
         return render_template('create_case.html')
     
-@app.route('/create/suspect')
+@app.route('/create/suspect', methods=["GET", "POST"])
 def create_suspect():
     if request.method == 'POST':
         suspect_name = request.form.get('name')
@@ -55,17 +56,19 @@ def create_suspect():
         suspect_date_of_birth = request.form.get('date_of_birth')
         suspect_description = request.form.get('description')
         suspect_case_number = request.form.get('case_number')
+        print(suspect_case_number)
+        print(type(suspect_case_number))
 
         # Save the form data to the database and assign to the case
         sherlock.create_suspect(suspect_name, suspect_alias, suspect_date_of_birth, suspect_description)
         sherlock.involved_in(suspect_case_number, suspect_name)
 
         # Redirect to a success page or the case details page
-        return redirect('/home/{}'.format(suspect_case_number))
+        return redirect('/home')
     else:
         return render_template('create_suspect.html')
     
-@app.route('/create/victim')
+@app.route('/create/victim', methods=["GET", "POST"])
 def create_victim():
     if request.method == 'POST':
         victim_id = request.form.get('victim_id')
@@ -79,11 +82,11 @@ def create_victim():
         sherlock.affected(victim_case_number, victim_id)
 
         # Redirect to a success page or the case details page
-        return redirect('/home/{}'.format(victim_case_number))
+        return redirect('/home')
     else:
         return render_template('create_victim.html')
     
-@app.route('/create/investigator')
+@app.route('/create/investigator', methods=["GET", "POST"])
 def create_investigator():
     if request.method == 'POST':
         investigator_badge_number = request.form.get('investigator_badge')
@@ -97,11 +100,11 @@ def create_investigator():
         sherlock.assigned_to(investigator_case_number, investigator_badge_number)
 
         # Redirect to a success page or the case details page
-        return redirect('/home/{}'.format(investigator_case_number))
+        return redirect('/home')
     else:
         return render_template('create_investigator.html')
     
-@app.route('/create/evidence')
+@app.route('/create/evidence', methods=["GET", "POST"])
 def create_evidence():
     if request.method == 'POST':
         evidence_number = request.form.get('evidence_number')
@@ -115,7 +118,7 @@ def create_evidence():
         sherlock.related_to(evidence_case_number, evidence_number)
 
         # Redirect to a success page or the case details page
-        return redirect('/home/{}'.format(evidence_case_number))
+        return redirect('/home')
     else:
         return render_template('create_evidence.html')
 
@@ -181,9 +184,17 @@ def view_evidence(evidence_number):
         evidence_dict["type"] = evidence["type"]
         evidence_dict["timestamp"] = evidence["timestamp"]
 
-    print(evidence_dict)
-
     return render_template('view_evidence.html', evidence=evidence_dict)
+
+
+# -------------------------------------------UPDATE-------------------------------------------------------
+@app.route("/update/case/<caseNumber>/<status>")
+def update_case(caseNumber, status):
+    if status.lower() == 'open':
+        sherlock.update_case(caseNumber, 'closed')
+    else:
+        sherlock.update_case(caseNumber, 'open')
+    return redirect('/home')
 
 # -------------------------------------------DELETE-------------------------------------------------------
 

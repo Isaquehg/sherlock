@@ -42,20 +42,21 @@ class Query:
         query = "MATCH (i:Investigator {badgeNumber: $badgeNumber}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (i)-[:ASSIGNED_TO]->(c)"
         parameters = {"badgeNumber": badgeNumber, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
+
     # Associate Suspect to Cases
-    def involved_in(self, caseNumber, suspectName):
+    def involved_in(self, caseNumber: str, suspectName: str):
         query = "MATCH (s:Suspect {name: $name}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (s)-[:INVOLVED_IN]->(c)"
         parameters = {"name": suspectName, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
 
     # Associate Victim to Cases
-    def affected(self, caseNumber, victimName):
-        query = "MATCH (v:Victim {name: $name}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (v)-[:AFFECTED]->(c)"
-        parameters = {"name": victimName, "caseNumber": caseNumber}
+    def affected(self, caseNumber: str, victim_id: str):
+        query = "MATCH (v:Victim {victim_id: $victim_id}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (v)-[:AFFECTED]->(c)"
+        parameters = {"victim_id": victim_id, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
 
     # Associate Evidence to Cases
-    def related_to(self, caseNumber, evidenceNumber):
+    def related_to(self, caseNumber: str, evidenceNumber: str):
         query = "MATCH (e:Evidence {evidenceNumber: $evidenceNumber}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (e)-[:RELATED_TO]->(c)"
         parameters = {"evidenceNumber": evidenceNumber, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
@@ -105,7 +106,7 @@ class Query:
             victims_list = []
             for victim in victims:
                 victim_dict = {}
-                victim_dict["id"] = victim["id"]
+                victim_dict["victim_id"] = victim["victim_id"]
                 victim_dict["name"] = victim["name"]
                 victim_dict["age"] = victim["age"]
                 victim_dict["contactInformation"] = victim["contactInformation"]
@@ -146,6 +147,11 @@ class Query:
         else:
             return jsonify({'error': 'Case not found'}), 404
         
+
+    def case(self, caseNumber):
+        query = "MATCH (c:Case {caseNumber: $caseNumber}) return c"
+        parameters = {"caseNumber": caseNumber}
+        return self.db.execute_query(query, parameters)
 
     def get_suspect(self, suspect_alias):
         query = "MATCH (s:Suspect {alias: $suspect_alias}) return s"
