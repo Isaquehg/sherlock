@@ -7,6 +7,8 @@ app = Flask(__name__)
 db = Database("bolt://44.203.85.235:7687", "neo4j", "sky-privilege-confusions")
 sherlock = Query(db)
 
+# -------------------------------------------HOME-------------------------------------------------------
+
 @app.route("/home")
 def home():
     case_numbers = sherlock.get_cases_all()
@@ -27,6 +29,8 @@ def case_details(case_number):
     evidences = data[4]
 
     return render_template('case_details.html', case=case, suspects=suspects, victims=victims, investigators=investigators, evidences=evidences)
+
+# -------------------------------------------CREATE-------------------------------------------------------
 
 @app.route('/create/case')
 def create_case():
@@ -115,29 +119,73 @@ def create_evidence():
     else:
         return render_template('create_evidence.html')
 
+# -------------------------------------------GET-------------------------------------------------------
+
 @app.route('/view/suspect/<suspect_alias>')
 def view_suspect(suspect_alias):
     suspect = sherlock.get_suspect(suspect_alias)
+    suspect = dict(suspect[0])
+    suspect = suspect['s']
 
-    return render_template('view_suspect.html', suspect=suspect)
+    suspect_dict = {}
+    for property in suspect:
+        suspect_dict["name"] = suspect["name"]
+        suspect_dict["alias"] = suspect["alias"]
+        suspect_dict["dateOfBirth"] = suspect["dateOfBirth"]
+
+    return render_template('view_suspect.html', suspect=suspect_dict)
 
 @app.route('/view/victim/<victim_id>')
 def view_victim(victim_id):
-    suspect = sherlock.get
+    victim = sherlock.get_victim(victim_id)
 
-    return render_template('view_suspect.html', suspect=suspect)
+    victim = dict(victim[0])
+    victim = victim['v']
 
-@app.route('/view/suspect/<suspect_alias>')
-def view_suspect(suspect_alias):
-    suspect = sherlock.get_suspect(suspect_alias)
+    victim_dict = {}
+    for property in victim:
+        victim_dict["victim_id"] = victim["victim_id"]
+        victim_dict["name"] = victim["name"]
+        victim_dict["age"] = victim["age"]
+        victim_dict["contactInformation"] = victim["contactInformation"]
 
-    return render_template('view_suspect.html', suspect=suspect)
+    return render_template('view_victim.html', victim=victim_dict)
 
-@app.route('/view/suspect/<suspect_alias>')
-def view_suspect(suspect_alias):
-    suspect = sherlock.get_suspect(suspect_alias)
+@app.route('/view/investigator/<badge_number>')
+def view_investigator(badge_number):
+    investigator = sherlock.get_investigator(badge_number)
 
-    return render_template('view_suspect.html', suspect=suspect)
+    investigator = dict(investigator[0])
+    investigator = investigator['i']
+
+    investigator_dict = {}
+    for property in investigator:
+        investigator_dict["badgeNumber"] = investigator["badgeNumber"]
+        investigator_dict["name"] = investigator["name"]
+        investigator_dict["contactInformation"] = investigator["contactInformation"]
+        investigator_dict["expertise"] = investigator["expertise"]
+
+    return render_template('view_investigator.html', investigator=investigator_dict)
+
+@app.route('/view/evidence/<evidence_number>')
+def view_evidence(evidence_number):
+    evidence = sherlock.get_evidence(evidence_number)
+
+    evidence = dict(evidence[0])
+    evidence = evidence['e']
+
+    evidence_dict = {}
+    for property in evidence:
+        evidence_dict["evidenceNumber"] = evidence["evidenceNumber"]
+        evidence_dict["description"] = evidence["description"]
+        evidence_dict["type"] = evidence["type"]
+        evidence_dict["timestamp"] = evidence["timestamp"]
+
+    print(evidence_dict)
+
+    return render_template('view_evidence.html', evidence=evidence_dict)
+
+# -------------------------------------------DELETE-------------------------------------------------------
 
 @app.route('/delete/suspect/<suspect_alias>')
 def delete_suspect(suspect_alias):

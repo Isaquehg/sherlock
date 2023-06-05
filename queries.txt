@@ -26,7 +26,7 @@ CREATE (:Investigator {name: 'Detective Johnson', badgeNumber: 'D002',  contactI
 WITH 1 AS dummy
 // Create Evidences and relate them to cases
 MATCH (c:Case {caseNumber: 'C001'})
-CREATE (:Evidence {evidenceNumber: 1, description: 'Surveillance footage', type: 'Video', timestamp: '2023-05-15 10:30:00'})-[:RELATED_TO]->(c)
+CREATE (:Evidence {evidenceNumber: "1", description: 'Surveillance footage', type: 'Video', timestamp: '2023-05-15 10:30:00'})-[:RELATED_TO]->(c)
 WITH 1 AS dummy
 MATCH (c:Case {caseNumber: 'C001'})
-CREATE (:Evidence {evidenceNumber: 2, description: 'Fingerprint on the doorknob', type: 'Physical', timestamp: '2023-05-16 14:20:00'})-[:RELATED_TO]->(c)
+CREATE (:Evidence {evidenceNumber: "2", description: 'Fingerprint on the doorknob', type: 'Physical', timestamp: '2023-05-16 14:20:00'})-[:RELATED_TO]->(c)

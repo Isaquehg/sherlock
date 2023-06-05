@@ -157,15 +157,16 @@ class Query:
         parameters = {"victim_id": victim_id}
         return self.db.execute_query(query, parameters)
     
-    def get_suspect(self, suspect_alias):
-        query = "MATCH (s:Suspect {alias: $suspect_alias}) return s"
-        parameters = {"suspect_alias": suspect_alias}
+    def get_investigator(self, badgeNumber):
+        query = "MATCH (i:Investigator {badgeNumber: $badgeNumber}) return i"
+        parameters = {"badgeNumber": badgeNumber}
         return self.db.execute_query(query, parameters)
     
-    def get_suspect(self, suspect_alias):
-        query = "MATCH (s:Suspect {alias: $suspect_alias}) return s"
-        parameters = {"suspect_alias": suspect_alias}
-        return self.db.execute_query(query, parameters)
+    def get_evidence(self, evidenceNumber):
+        query = "MATCH (e:Evidence {evidenceNumber: $evidenceNumber}) return e"
+        parameters = {"evidenceNumber": evidenceNumber}
+        response = self.db.execute_query(query, parameters)
+        return response
 
     # -----------------------------------------UPDATE--------------------------------------------------
     # Modify Case status

@@ -11,10 +11,10 @@
   <header><!---114 x 405---->
     <div id="header-options">
       <img id="logo" src="../static/logo1.png" alt="Logo" height="57" width="202">
-      <a class="header-button" href="/create/suspects">Suspects</a>
-      <a class="header-button" href="/create/victims">Victims</a>
-      <a class="header-button" href="/create/investigators">Investigators</a>
-      <a class="header-button" href="/create/evidences">Evidences</a>
+      <a class="header-button" href="/create/suspect">Suspects</a>
+      <a class="header-button" href="/create/victim">Victims</a>
+      <a class="header-button" href="/create/investigator">Investigators</a>
+      <a class="header-button" href="/create/evidence">Evidences</a>
     </div>
     <div>
       <a id="new_case" class="header-button" href="/create/case">New Case</a>
@@ -25,16 +25,16 @@
 
   <main>
     <form action="create/case" method="post">
-      <label for="case_number">Evidence Number:</label>
+      <label for="case_number">Case Number:</label>
       <input type="text" id="case_number" name="case_number" required>
       
       <label for="description">Case Description:</label>
       <input type="text" id="description" name="description" required>
 
-      <label for="status">Case Number:</label>
+      <label for="status">Case Status:</label>
       <input type="text" id="status" name="status" required>
       
-      <button type="submit">Assign Evidence</button>
+      <button type="submit">Create Case</button>
     </form>
 
   </main>
