@@ -33,7 +33,7 @@ def case_details(case_number):
 
 # -------------------------------------------CREATE-------------------------------------------------------
 
-@app.route('/create/case')
+@app.route('/create/case', methods=["GET", "POST"])
 def create_case():
     if request.method == 'POST':
         case_number = request.form.get('case_number')
@@ -42,9 +42,10 @@ def create_case():
 
         # Save the form data to the database using your database functions
         sherlock.create_case(case_number, description, status)
+        print("here")
 
         # Redirect to a success page or the case details page
-        return redirect('/home/{}'.format(case_number))
+        return redirect('/home')
     else:
         return render_template('create_case.html')
     
@@ -140,6 +141,7 @@ def view_suspect(suspect_alias):
 
 @app.route('/view/victim/<victim_id>')
 def view_victim(victim_id):
+    print(type(victim_id))
     victim = sherlock.get_victim(victim_id)
 
     victim = dict(victim[0])
