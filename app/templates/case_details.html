@@ -33,7 +33,11 @@
         <h2 class="category">Suspects</h2>
         <div class="button-container">
           {% for suspect in suspects %}
-            <a class="button" href="/view/suspect/{{ suspect.alias }}">{{ suspect.alias }}</a>
+            <a class="button suspect" href="/view/suspect/{{ suspect.alias }}">
+              <div class="button-content">
+                {{ suspect.alias }}
+              </div>
+            </a>
           {% endfor %}
         </div>
       </div>
@@ -44,7 +48,11 @@
         <h2 class="category">Victims</h2>
         <div class="button-container">
           {% for victim in victims %}
-              <a class="button" href="/view/victim/{{ victim.victim_id }}">{{ victim.name.split(' ')[0] }}</a>
+              <a class="button victim" href="/view/victim/{{ victim.victim_id }}">
+                <div class="button-content">
+                {{ victim.name.split(' ')[0] }}
+                </div>
+              </a>
           {% endfor %}
         </div>
       </div>
@@ -55,7 +63,11 @@
         <h2 class="category">Investigators</h2>
         <div class="button-container">
           {% for investigator in investigators %}
-              <a class="button" href="/view/investigator/{{ investigator.badgeNumber }}">{{ investigator.badgeNumber }}</a>
+              <a class="button investigator" href="/view/investigator/{{ investigator.badgeNumber }}">
+                <div class="button-content">
+                  {{ investigator.badgeNumber }}
+                </div>
+              </a>
           {% endfor %}
         </div>
       </div>
@@ -66,7 +78,11 @@
         <h2 class="category">Evidences</h2>
         <div class="button-container">
           {% for evidence in evidences %}
-            <a class="button" href="/view/evidence/{{ evidence.evidenceNumber }}">{{ evidence.evidenceNumber }}</a>
+            <a class="button evidence" href="/view/evidence/{{ evidence.evidenceNumber }}">
+              <div class="button-content">
+                {{ evidence.evidenceNumber }}
+              </div>
+            </a>
           {% endfor %}
         </div>
       </div>

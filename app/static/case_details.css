@@ -110,10 +110,29 @@ header div h1{
     transition: background-color 0.3s ease, margin-left 0.3s ease;
     width: 6em;
     height: 10em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.button.suspect {
+    background-image: url("../static/suspect.jpg");
+}
+
+.button.victim {
+    background-image: url("../static/victim.jpg");
+}
+
+.button.investigator {
+    background-image: url("../static/investigator.jpg");
+}
+
+.button.evidence {
+    background-image: url("../static/evidences.jpg");
 }
 
 .button:hover {
-    background-color: #880000;
+    filter: brightness(1.2) saturate(1.2) hue-rotate(10deg);
     margin-left: 0.7em;
 }
 
