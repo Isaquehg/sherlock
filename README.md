@@ -23,3 +23,9 @@ Properties: type (e.g., document, photo, video), description, timestamp, etc.
 - Neo4j
 - Cypher
 - HTML & CSS
+
+## How to Run it
+1. pip3 install -r requirements.txt
+2. source venv/bin/activate
+3. cd app
+4. flask --app app run
