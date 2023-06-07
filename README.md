@@ -1,4 +1,8 @@
 # Sherlock
+
+<img src="/app/static/SHERLOCK.png"  width="150" height="150">
+
+
 ## About
 **A web application for crime investigation**
 
@@ -29,3 +33,4 @@ Properties: type (e.g., document, photo, video), description, timestamp, etc.
 2. source venv/bin/activate
 3. cd app
 4. flask --app app run
+> Remember to create your Neo4j before and change the DB credentials with yours in app.py, line 8.
