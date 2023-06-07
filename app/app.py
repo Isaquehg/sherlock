@@ -2,6 +2,7 @@
 from flask import Flask, redirect, render_template, request
 from database import Database
 from queries import Query
+import urllib
 
 app = Flask(__name__)
 db = Database("bolt://44.203.85.235:7687", "neo4j", "sky-privilege-confusions")
@@ -57,12 +58,11 @@ def create_suspect():
         suspect_date_of_birth = request.form.get('date_of_birth')
         suspect_description = request.form.get('description')
         suspect_case_number = request.form.get('case_number')
-        print(suspect_case_number)
-        print(type(suspect_case_number))
+        print(suspect_alias)
 
         # Save the form data to the database and assign to the case
         sherlock.create_suspect(suspect_name, suspect_alias, suspect_date_of_birth, suspect_description)
-        sherlock.involved_in(suspect_case_number, suspect_name)
+        sherlock.involved_in(suspect_case_number, suspect_alias)
 
         # Redirect to a success page or the case details page
         return redirect('/home')
@@ -143,7 +143,7 @@ def view_suspect(suspect_alias):
 def view_victim(victim_id):
     print(type(victim_id))
     victim = sherlock.get_victim(victim_id)
-
+    print(victim)
     victim = dict(victim[0])
     victim = victim['v']
 
@@ -199,12 +199,22 @@ def update_case(caseNumber, status):
     return redirect('/home')
 
 # -------------------------------------------DELETE-------------------------------------------------------
+@app.route('/delete/case/<caseNumber>')
+def delete_case(caseNumber):
+    sherlock.delete_case(caseNumber)
+
+    # Redirect to a success page or the case details page
+    return redirect('/home')
 
 @app.route('/delete/suspect/<suspect_alias>')
 def delete_suspect(suspect_alias):
+    # Converting URLs to str
+    suspect_alias = urllib.parse.unquote(suspect_alias)
+    print(suspect_alias)
+
     sherlock.delete_suspect(suspect_alias)
 
-    # Redirect to a success page or the case details page
+    # Redirect to a success page
     return redirect('/home')
 
 @app.route('/delete/victim/<victim_id>')

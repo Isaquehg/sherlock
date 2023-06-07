@@ -18,7 +18,7 @@ header {
 
 header img {
     max-width: 500px;
-    margin-right: 4em;
+    margin-right: 2em;
 }
 
 header h1{
@@ -64,15 +64,14 @@ header div h1{
     text-align: center;
     margin-left: 8em;
 }
-.divisor{
-    border: none;
-    border-top: 2px solid #000000;
-    margin: 0em;
+
+main {
+    text-align: center;
+    margin-top: 0rem;
+    padding-top: 5rem;
 }
 
 #status{
-    margin-left: 36.5rem;
-    font-style: italic;
     font-size: 2rem;
     color: #000000;
 }
@@ -81,7 +80,7 @@ header div h1{
 .flex-container {
     display:block;
     flex-wrap: wrap;
-    padding-top: 12rem;
+    padding-top: 9rem;
 }
 
 .category{
@@ -149,8 +148,16 @@ header div h1{
     text-align: center;
 }
 
+#delete-button {
+    background-color: #880000;
+    color: #fff;
+    padding: 1rem 4.7rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, margin-left 0.3s ease;
+}
   
-  
-  
-  
+#delete-button:hover {
+    background-color: #000000;
+}
   

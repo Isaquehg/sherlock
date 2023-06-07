@@ -19,6 +19,7 @@ class Query:
 
     # (:Victim {contactInformation: "robert@example.com",name: "Robert Johnson",age: 42})
     def create_victim(self, victim_id: str, name: str, age: int, contactInformation: str):
+        victim_id = str(victim_id)
         query = "CREATE (:Victim {victim_id: $victim_id, name: $name, age: $age, contactInformation: $contactInformation})"
         parameters = {"victim_id": victim_id, "name": name, "age": age, "contactInformation": contactInformation}
         self.db.execute_query(query, parameters)
@@ -30,7 +31,8 @@ class Query:
         self.db.execute_query(query, parameters)
 
     # (:Evidence {description: "Surveillance footage", type: "Document", timestamp: "2023-05-15 10:30:00"})
-    def create_evidence(self, evidenceNumber: int, description: str, type: str, timestamp: str):
+    def create_evidence(self, evidenceNumber: str, description: str, type: str, timestamp: str):
+        evidenceNumber = str(evidenceNumber)
         query = "CREATE (:Evidence {evidenceNumber: $evidenceNumber, description: $description, type: $type, timestamp: $timestamp})"
         parameters = {"evidenceNumber": evidenceNumber, "description": description, "type": type, "timestamp": timestamp}
         self.db.execute_query(query, parameters)
@@ -51,12 +53,14 @@ class Query:
 
     # Associate Victim to Cases
     def affected(self, caseNumber: str, victim_id: str):
+        victim_id = str(victim_id)
         query = "MATCH (v:Victim {victim_id: $victim_id}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (v)-[:AFFECTED]->(c)"
         parameters = {"victim_id": victim_id, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
 
     # Associate Evidence to Cases
     def related_to(self, caseNumber: str, evidenceNumber: str):
+        evidenceNumber = str(evidenceNumber)
         query = "MATCH (e:Evidence {evidenceNumber: $evidenceNumber}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (e)-[:RELATED_TO]->(c)"
         parameters = {"evidenceNumber": evidenceNumber, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
@@ -198,9 +202,9 @@ class Query:
         parameters = {"evidenceNumber": evidenceNumber}
         self.db.execute_query(query, parameters)
 
-    def delete_suspect(self, name):
-        query = "MATCH (s:Suspect {name: $name}) DETACH DELETE s"
-        parameters = {"name": name}
+    def delete_suspect(self, alias):
+        query = "MATCH (s:Suspect {alias: $alias}) DETACH DELETE s"
+        parameters = {"alias": alias}
         self.db.execute_query(query, parameters)
 
     def delete_victim(self, id):

@@ -18,7 +18,7 @@ header {
 
 header img {
     max-width: 500px;
-    margin-right: 4em;
+    margin-right: 2em;
 }
 
 header h1{
@@ -64,16 +64,11 @@ header div h1{
     text-align: center;
     margin-left: 8em;
 }
-.divisor{
-    border: none;
-    border-top: 2px solid #000000;
-    margin: 0em;
-}
 
 main {
     text-align: center;
     margin-top: 0rem;
-    padding-top: 12rem;
+    padding-top: 6rem;
 }
 
 .button-container {
@@ -96,10 +91,15 @@ main {
     transition: background-color 0.3s ease, margin-left 0.3s ease;
     width: 6em;
     height: 10em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('case.jpg');
+    filter: brightness(0.8) grayscale(0.5);
 }
 
 .button:hover {
-    background-color: #880000;
+    filter: brightness(1.2) saturate(1.2) hue-rotate(10deg);
     margin-left: 0.7em;
 }
 

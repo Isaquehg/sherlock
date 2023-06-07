@@ -6,19 +6,19 @@ body {
 }
 
 header {
-  padding: 1rem;
-  text-align: left;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  background: linear-gradient(to bottom, #5c5c5c, #ffffff00);
+    padding: 1rem;
+    text-align: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: linear-gradient(to bottom, #5c5c5c, #ffffff00);
 }
 
 header img {
     max-width: 500px;
-    margin-right: 4em;
+    margin-right: 2em;
 }
 
 header h1{
@@ -53,18 +53,22 @@ header div{
     background-color: #880000;
     margin-left: 1em;
 }
+#new_case{
+    background-color: #880000;
+}
+#new_case:hover{
+    background-color: #880000;
+}
 
-header h1{
+header div h1{
     text-align: center;
-}
-.divisor{
-    border: none;
-    border-top: 2px solid #000000;
-    margin: 0em;
+    margin-left: 8em;
 }
 
-main{
-  padding-top: 12rem;
+main {
+    text-align: center;
+    margin-top: 0rem;
+    padding-top: 6rem;
 }
 
 form {
@@ -77,11 +81,14 @@ form {
 
 .description{
     height: 12rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
 }
 
 input{
     border-radius: 5px;
     height: 2rem;
+    font-size: 1.2rem;
 }
 
 label {
