@@ -46,9 +46,9 @@ class Query:
         self.db.execute_query(query, parameters)
 
     # Associate Suspect to Cases
-    def involved_in(self, caseNumber: str, suspectName: str):
-        query = "MATCH (s:Suspect {name: $name}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (s)-[:INVOLVED_IN]->(c)"
-        parameters = {"name": suspectName, "caseNumber": caseNumber}
+    def involved_in(self, caseNumber: str, suspectAlias: str):
+        query = "MATCH (s:Suspect {alias: $alias}) MATCH (c:Case {caseNumber: $caseNumber}) CREATE (s)-[:INVOLVED_IN]->(c)"
+        parameters = {"alias": suspectAlias, "caseNumber": caseNumber}
         self.db.execute_query(query, parameters)
 
     # Associate Victim to Cases
