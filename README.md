@@ -22,7 +22,8 @@ Properties: name, badge number, expertise, contact information, etc.
 5. Evidence: Represents a piece of evidence related to a case.
 Properties: type (e.g., document, photo, video), description, timestamp, etc.
 
-## Technologies
+## Languages & Technologies
+- Python
 - Flask
 - Neo4j
 - Cypher
