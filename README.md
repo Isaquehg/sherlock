@@ -4,7 +4,7 @@
 
 
 ## About
-**A web application for crime investigation**
+**A Web Application for Scene Crime Investigation - CSI**
 
 Elements you can include and deal with: 
 1. Case: Represents a criminal case.
